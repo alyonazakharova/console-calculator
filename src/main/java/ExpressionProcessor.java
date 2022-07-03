@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ExpressionProcessor {
     @Getter
-    private static final Map<String, Integer> variables = new HashMap<>();
+    private static final Map<String, Short> variables = new HashMap<>();
     private static final List<String> tokens = new ArrayList<>();
     private static final List<String> postfixNotation = new ArrayList<>();
     private static String previousToken;

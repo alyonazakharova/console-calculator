@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Enter expression... Enter \"quit\" to quit this cool calculator");
+            System.out.println("Enter an expression... Or enter \"quit\" to quit this cool calculator");
 
             boolean ok = false;
             String expression;
@@ -44,11 +44,11 @@ public class Main {
                     Matcher matcher = pattern.matcher(input);
                     if (matcher.find()) {
                         String variableName = matcher.group(1);
-                        int variableValue;
+                        short variableValue;
                         try {
-                            variableValue = Integer.parseInt(matcher.group(2));
+                            variableValue = Short.parseShort(matcher.group(2));
                         } catch (NumberFormatException e) {
-                            System.out.println("Invalid input: " + e.getLocalizedMessage());
+                            System.out.println("Invalid input. Unable to parse " + variableName + " into number");
                             continue;
                         }
                         if (ExpressionProcessor.getVariables().containsKey(variableName)) {
