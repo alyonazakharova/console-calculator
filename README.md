@@ -24,6 +24,8 @@ Then the program will be waiting for you to enter values for the variables, if n
 
 If something is wrong with your input data, you'll get an error message.
 
+You can change variables values until *clear* command is called. After *clear* command is called, you need to enter a new expression.
+
 Below is the output of the program:
 
 <img width="639" alt="Снимок экрана 2022-07-02 в 15 43 41" src="https://user-images.githubusercontent.com/25694552/177001249-c4736467-fd92-4127-ba43-65d9e309a7e0.png">
