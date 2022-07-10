@@ -29,7 +29,7 @@ public class Main {
             while (true) {
                 input = scanner.nextLine().replaceAll(" ", "");
                 if ("quit".equalsIgnoreCase(input)) {
-                    break;
+                    return;
                 } else if ("calculate".equalsIgnoreCase(input)) {
                     if (ExpressionProcessor.getVariables().containsValue(null)) {
                         System.out.println("ERROR. You have to set all variables values");
