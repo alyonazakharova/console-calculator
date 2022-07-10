@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Enter an expression... Or enter \"quit\" to quit this cool calculator");
+            System.out.println("Enter an expression...\nType \"clear\" to start a new expression. Or type \"quit\" to quit this cool calculator");
 
             boolean ok = false;
             String expression;
