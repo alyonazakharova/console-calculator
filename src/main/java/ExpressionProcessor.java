@@ -7,7 +7,7 @@ public class ExpressionProcessor {
     @Getter
     private static final Map<String, Short> variables = new HashMap<>();
     private static final List<String> tokens = new ArrayList<>();
-    private static final List<String> postfixNotation = new ArrayList<>();
+    private static final List<String> postfixNotationWithVariables = new ArrayList<>();
     private static String previousToken;
     private static final ArrayDeque<String> operatorsDeque = new ArrayDeque<>();
     private static final ArrayDeque<String> resultDeque = new ArrayDeque<>();
@@ -19,7 +19,7 @@ public class ExpressionProcessor {
         variables.clear();
         tokens.clear();
         operatorsDeque.clear();
-        postfixNotation.clear();
+        postfixNotationWithVariables.clear();
         resultDeque.clear();
 
         int i = 0;
@@ -103,7 +103,7 @@ public class ExpressionProcessor {
             } else if (")".equals(token)) {
                 String operator = operatorsDeque.pop();
                 while (!Objects.equals(operator, "(")) {
-                    postfixNotation.add(operator);
+                    postfixNotationWithVariables.add(operator);
                     operator = operatorsDeque.pop();
                 }
             } else if (Arrays.asList("*", "/", "-", "+").contains(token)) {
@@ -115,26 +115,26 @@ public class ExpressionProcessor {
                         operatorsDeque.push(token);
                     } else {
                         previousOperator = operatorsDeque.pop();
-                        postfixNotation.add(previousOperator);
+                        postfixNotationWithVariables.add(previousOperator);
                         operatorsDeque.push(token);
                     }
                 } else {
                     previousOperator = operatorsDeque.pop();
-                    postfixNotation.add(previousOperator);
+                    postfixNotationWithVariables.add(previousOperator);
                     operatorsDeque.push(token);
                 }
             } else {
-                postfixNotation.add(token);
+                postfixNotationWithVariables.add(token);
             }
         }
         while (operatorsDeque.peek() != null) {
-            postfixNotation.add(operatorsDeque.pop());
+            postfixNotationWithVariables.add(operatorsDeque.pop());
         }
     }
 
     public static void buildTree() {
         Node rightNode, leftNode, resultNode;
-        for (String token : postfixNotation) {
+        for (String token : postfixNotationWithVariables) {
             if (Arrays.asList("*", "/", "+", "-").contains(token)) {
                 rightNode = nodesDeque.pop();
                 leftNode = nodesDeque.pop();
@@ -171,6 +171,7 @@ public class ExpressionProcessor {
     }
 
     public static int calculate() {
+        List<String> postfixNotation = new ArrayList<>(postfixNotationWithVariables);
         for (String variable : variables.keySet()) {
             while (postfixNotation.contains(variable)) {
                 postfixNotation.set(postfixNotation.indexOf(variable), variables.get(variable).toString());

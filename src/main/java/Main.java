@@ -35,10 +35,11 @@ public class Main {
                         System.out.println("ERROR. You have to set all variables values");
                     } else {
                         System.out.println("Result: " + ExpressionProcessor.calculate());
-                        break;
                     }
                 } else if ("print".equalsIgnoreCase(input)) {
                     ExpressionProcessor.buildTree();
+                } else if ("clear".equalsIgnoreCase(input)) {
+                    break;
                 } else {
                     Pattern pattern = Pattern.compile("(.+)=(.+)");
                     Matcher matcher = pattern.matcher(input);
