@@ -1,10 +1,7 @@
-import lombok.Getter;
-
 import java.io.PrintStream;
 import java.util.*;
 
 public class ExpressionProcessor {
-    @Getter
     private static final Map<String, Short> variables = new HashMap<>();
     private static final List<String> tokens = new ArrayList<>();
     private static final List<String> postfixNotationWithVariables = new ArrayList<>();
@@ -220,5 +217,9 @@ public class ExpressionProcessor {
 
     private static boolean isDigit(char ch) {
         return ch >= '0' && ch <= '9';
+    }
+
+    public static Map<String, Short> getVariables() {
+        return variables;
     }
 }
